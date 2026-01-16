@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Anmol & Nikita | The Wedding Celebration</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Pinyon+Script&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Color Palette based on Reference Image */
+            --bg-pink: #ffd1dc;
+            --bg-gradient: linear-gradient(135deg, #ffd1dc 0%, #ffeff2 100%);
+            --glass-bg: rgba(255, 255, 255, 0.35);
+            --glass-border: rgba(255, 215, 0, 0.6);
+            --gold: #d4af37;
+            --text-dark: #4a4a4a;
+            --text-pink-dark: #8a4b58;
+            
+            /* Event Theme Colors */
+            --theme-rajasthani: linear-gradient(45deg, #ff4b2b, #ff416c);
+            --theme-glam: linear-gradient(45deg, #bdc3c7, #2c3e50);
+            --theme-haldi: linear-gradient(45deg, #f7971e, #ffd200);
+            --theme-wedding: linear-gradient(45deg, #c31432, #240b36);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-dark);
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding: 20px;
+            /* Adding a subtle traditional pattern overlay */
+            background-image: 
+                linear-gradient(135deg, #ffd1dc 0%, #ffeff2 100%),
+                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            padding-bottom: 100px; /* Space for bottom decor */
+        }
+
+        /* Typography Styles */
+        h1, h2 {
+            font-family: 'Pinyon Script', cursive;
+            color: var(--text-pink-dark);
+            text-align: center;
+            font-weight: 400;
+        }
+
+        h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .couple-name {
+            font-size: 4.5rem;
+            line-height: 1.2;
+            margin: 30px 0;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .invitation-header {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            color: var(--text-pink-dark);
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        /* Glassmorphism Cards with Quirky Borders */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border: 3px double var(--gold);
+            border-radius: 30px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        /* Adding ornamental corners using CSS */
+        .glass-card::before, .glass-card::after {
+            content: '✻';
+            position: absolute;
+            font-size: 30px;
+            color: var(--gold);
+            opacity: 0.7;
+        }
+        .glass-card::before { top: 10px; left: 15px; }
+        .glass-card::after { top: 10px; right: 15px; }
+
+        /* Family Grid Section */
+        .family-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            text-align: center;
+        }
+
+        .family-member p {
+            margin: 5px 0;
+        }
+        .family-title {
+            font-weight: bold;
+            color: var(--text-pink-dark);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        /* Timeline & Events - The Quirky Part */
+        .event-timeline {
+            position: relative;
+        }
+
+        .event-item {
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            border: 1px solid var(--gold);
+            transition: transform 0.3s ease;
+        }
+
+        .event-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        .event-date {
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            color: var(--text-pink-dark);
+            background: rgba(255, 215, 0, 0.2);
+            padding: 5px 15px;
+            border-radius: 50px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .event-title {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+            color: var(--text-pink-dark);
+        }
+
+        /* Quirky Icons placeholders for illustrations */
+        .quirky-icon {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+        }
+
+        .theme-pill {
+            padding: 8px 20px;
+            border-radius: 30px;
+            color: white;
+            font-weight: bold;
+            font-family: 'Cinzel', sans-serif;
+            margin: 15px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: inline-block;
+        }
+
+        .dress-code-box {
+            background: rgba(255,255,255,0.6);
+            padding: 15px;
+            border-radius: 15px;
+            width: 100%;
+            border: 1px dashed var(--gold);
+        }
+
+        .dress-code-title {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 5px;
+        }
+
+        /* Links and Buttons */
+        .map-link {
+            color: var(--text-pink-dark);
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 2px dotted var(--gold);
+        }
+
+        .btn-rsvp {
+            background: linear-gradient(45deg, var(--gold), #f7dc6f);
+            color: white;
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            padding: 15px 50px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            box-shadow: 0 10px 20px -10px rgba(212, 175, 55, 0.5);
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1.2rem;
+        }
+
+        .btn-rsvp:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px -10px rgba(212, 175, 55, 0.7);
+        }
+
+        /* Bottom Decor Placeholder - Mimicking foliage */
+        .bottom-decor {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            /* Using a CSS gradient to simulate the green foliage at the bottom for a single-file solution */
+            background: linear-gradient(to top, rgba(85, 107, 47, 0.4) 0%, transparent 100%);
+            z-index: 1;
+            pointer-events: none;
+            border-top-left-radius: 50% 20%;
+            border-top-right-radius: 50% 20%;
+        }
+
+
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 40px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        /* Responsive Adjustments */
+        @media (min-width: 768px) {
+            .family-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .couple-name {
+                font-size: 6rem;
+            }
+            .event-item {
+                flex-direction: row;
+                text-align: left;
+                justify-content: space-between;
+            }
+            .event-details-left {
+                flex: 1;
+            }
+            .event-details-right {
+                flex: 1;
+                text-align: center;
+                padding-left: 20px;
+            }
+             .quirky-icon {
+                margin-right: 20px;
+                margin-bottom: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="glass-card header-card">
+            <div class="invitation-header">|| Shree Ganeshay Namah ||</div>
+            
+            <h2>We Invite You To Celebrate The Union Of</h2>
+            <h1 class="couple-name">Anmol & Nikita</h1>
+
+            <div style="text-align: center; margin-bottom: 30px;">
+                <span style="font-size: 2rem; color: var(--gold);">✻</span>
+            </div>
+
+            <div class="family-grid">
+                <div class="family-side">
+                    <h3>Groom's Family</h3>
+                    <div class="family-member">
+                        <p class="family-title">Grandparents</p>
+                        <p>Shri Yugal Kishore Jalan & Late Chandrakanta Jalan</p>
+                    </div>
+                    <br>
+                    <div class="family-member">
+                        <p class="family-title">Parents</p>
+                        <p>Shri Sunil Kumar Jalan & Smt. Anita Jalan</p>
+                    </div>
+                </div>
+
+                <div class="family-side">
+                    <h3>Bride's Family</h3>
+                    <div class="family-member">
+                        <p class="family-title">Grandparents</p>
+                        <p>Late Nanuram Gupta & Late Harpyari Devi</p>
+                    </div>
+                    <br>
+                    <div class="family-member">
+                        <p class="family-title">Parents</p>
+                        <p>Shri Ramesh Chandra Gupta & Smt. Savita Gupta</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-card">
+            <h2>Wedding Itinerary</h2>
+            <p style="text-align: center; margin-bottom: 30px; font-style: italic; color: var(--text-pink-dark);">A roadmap to our celebrations</p>
+
+            <div class="event-timeline">
+                
+                <div class="event-item">
+                    <div class="quirky-icon">🧡</div> <div class="event-details-left">
+                        <span class="event-date">12th Feb 2026 | 11:30 AM Onwards</span>
+                        <div class="event-title">Mayra</div>
+                        <div class="theme-pill" style="background: var(--theme-rajasthani);">Theme: Rajasthani</div>
+                    </div>
+                    <div class="event-details-right">
+                        <div class="dress-code-box">
+                            <div class="dress-code-title">Wardrobe Planner</div>
+                            <p><strong>Mens:</strong> Traditional Wear</p>
+                            <p><strong>Women:</strong> Bandhej</p>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="event-item">
+                    <div class="quirky-icon">✨</div> <div class="event-details-left">
+                        <span class="event-date">12th Feb 2026 | 5:30 PM Onwards</span>
+                        <div class="event-title">Tilak & Sangeet</div>
+                        <div class="theme-pill" style="background: var(--theme-glam);">Theme: Glitz and Glam</div>
+                    </div>
+                    <div class="event-details-right">
+                        <div class="dress-code-box">
+                            <div class="dress-code-title">Wardrobe Planner</div>
+                            <p>Shine Bright, Sparkle & Glam.</p>
+                            <p>Dress your best!</p>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="event-item">
+                    <div class="quirky-icon">🌼</div> <div class="event-details-left">
+                        <span class="event-date">13th Feb 2026 | 10:30 AM Onwards</span>
+                        <div class="event-title">Haldi & Fun</div>
+                        <div class="theme-pill" style="background: var(--theme-haldi);">Theme: Vibrant Multi-Color</div>
+                    </div>
+                    <div class="event-details-right">
+                        <div class="dress-code-box">
+                            <div class="dress-code-title">Wardrobe Planner</div>
+                            <p>Hues of happiness.</p>
+                            <p>Colorful & Vibrant attire.</p>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="event-item">
+                    <div class="quirky-icon">💖</div> <div class="event-details-left">
+                        <span class="event-date">13th Feb 2026 | 6:00 PM Onwards</span>
+                        <div class="event-title">Wedding Ceremony</div>
+                        <div class="theme-pill" style="background: var(--theme-wedding);">Theme: Traditional</div>
+                    </div>
+                    <div class="event-details-right">
+                        <div class="dress-code-box">
+                            <div class="dress-code-title">Wardrobe Planner</div>
+                            <p>Regal & Radiant.</p>
+                            <p>Royal Traditional Indian Wear.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="glass-card" style="text-align: center;">
+            <h2>The Venue</h2>
+            <p style="font-size: 1.3rem; margin: 20px 0; font-family: 'Cinzel', serif;">
+                Banabithi Resort
+            </p>
+            <a href="https://maps.app.goo.gl/ce3qwSaYpPkr8GJu7" target="_blank" class="map-link">
+                📍 Click here to view Map Location
+            </a>
+
+            <div style="margin: 40px 0;">
+                <span style="font-size: 2rem; color: var(--gold);">✻</span>
+            </div>
+
+            <h2>RSVP</h2>
+            <p>Please grace us with your presence and bless the couple.</p>
+            <a href="#" class="btn-rsvp">Confirm Your Presence</a>
+        </div>
+
+        <footer style="text-align: center; padding: 20px; color: var(--text-pink-dark); font-size: 0.9rem;">
+            <p>Made with ❤️ for Anmol & Nikita's Big Day</p>
+        </footer>
+
+    </div>
+
+    <div class="bottom-decor"></div>
+
+</body>
+</html>
