@@ -406,7 +406,7 @@
                 <div style="font-size: 3rem; margin-bottom: 20px; font-family: 'Pinyon Script'; color: var(--text-dark); line-height: 1;">Banabithi Resort</div>
                 
                 <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.072558661848!2d88.4285863!3d22.5763873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0275a5e3c8801d%3A0x6b80145c219662b2!2sBanabithi%20Resort!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://maps.google.com/maps?q=Banabithi%20Resort%20Ghatakpukur&t=&z=13&ie=UTF8&iwloc=&output=embed" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
 
                 <div class="divider">~ ✻ ~</div>
@@ -569,7 +569,7 @@
         musicBtn.addEventListener('click', toggleMusic);
 
         // AGGRESSIVE AUTOPLAY WORKAROUND
-        // This will try to play the music as soon as the user touches OR scrolls the page
+        // This attempts to play music on the very first touch or scroll event
         function tryAutoPlay() {
             if(!isPlaying) {
                 audio.play().then(() => {
@@ -578,6 +578,7 @@
                     tooltip.style.display = "none";
                     document.removeEventListener('click', tryAutoPlay);
                     document.removeEventListener('scroll', tryAutoPlay);
+                    document.removeEventListener('touchstart', tryAutoPlay); // Added for mobile
                 }).catch(e => {
                     // Autoplay blocked by browser
                 });
@@ -586,7 +587,7 @@
 
         document.addEventListener('click', tryAutoPlay);
         document.addEventListener('scroll', tryAutoPlay);
-
+        document.addEventListener('touchstart', tryAutoPlay); // Added for mobile
 
         // --- 6. FORM HANDLER ---
         const form = document.forms['submit-to-google-sheet'];
